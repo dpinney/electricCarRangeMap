@@ -1,0 +1,18 @@
+GOAL
+Generate this.
+
+TODO
+Figure out what to do after that.
+Maybe use Python or polymaps as well.
+
+DONE
+Draw any map with openlayer.
+Set a max zoom out.
+Center it on MN.
+Add state boundaries, cities, etc.
+Add a circle.
+Add a point.
+Put all features on it.
+
+LINKS
+Doing driving distance calculation in ESRI: http://blogs.esri.com/esri/arcgis/2013/12/27/33975/
