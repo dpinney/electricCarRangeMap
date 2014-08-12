@@ -16,3 +16,4 @@ Put all features on it.
 
 LINKS
 Doing driving distance calculation in ESRI: http://blogs.esri.com/esri/arcgis/2013/12/27/33975/
+Vector Union?? https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=openlayers%203%20vector%20union
