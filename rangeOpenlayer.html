@@ -4,15 +4,18 @@
 		<style>
 			* {padding:0px; border:0px; margin:0px; overflow:hidden}
 			div#map {height:100%; width:100%}
-			div#controlBox {position:absolute; bottom:0px; left:5px; z-index: 100; padding:10px; font-family: sans-serif; background:gray}
+			div#controlBox {position:absolute; bottom:0px; left:5px; z-index: 100; padding:10px; font-family: sans-serif; background:gray; color:white;}
 		</style>
 		<script type="text/javascript" src="ol.js"></script>
 		<script type="text/javascript" src="MN_Chargers.js"></script>
 		<script type="text/javascript" src="MN_Car_Ranges.js"></script>
-		<title>OpenLayers 3 example</title>
+		<title>Electric Vehicle Range Map</title>
 	</head>
 	<body>
-		<div id="controlBox">Controls go here.</div>
+		<div id="controlBox">
+			<label><input type="radio" name="sex" value="male">Male</label><br>
+			<label><input type="radio" name="sex" value="female">Female</label>
+		</div>
 		<div id="map"></div>
 	</body>
 	<script type="text/javascript">
@@ -31,12 +34,15 @@
 			var iCirc = new ol.geom.Circle(iLoc, 40000)
 			vectorSource.addFeature(new ol.Feature(iCirc))
 		}
-		// MapQuest({layer: 'sat'})
-		// map.on('postcompose', function(evt) {
-		// 	evt.vectorContext.setFillStrokeStyle(
-		// 			new ol.style.Fill({color: 'rgba(255, 0, 0, .1)'}),
-		// 			new ol.style.Stroke({color: 'rgba(255, 0, 0, .8)', width: 3}));
-		// 	evt.vectorContext.drawCircleGeometry(new ol.geom.Circle(mnLoc, 400000));
-		// });
+		// Change radius of all circles.
+		function allCircleRadii(x) {
+			allFeats = vectorSource.getFeatures()
+			for (i=0;i<allFeats.length;i++) {
+				iGeo = allFeats[i].getGeometry()
+				if (iGeo.getType() == "Circle") {
+					iGeo.setRadius(x)
+				}
+			}
+		}
 	</script>
 </html>

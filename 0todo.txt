@@ -1,9 +1,9 @@
 GOAL
-Generate this.
+Generate this map.
 
 TODO
-Figure out what to do after that.
-Maybe use Python or polymaps as well.
+Add the circle radius changer.
+Make the circle regions look nicer: poly intersect, better colors or different layer type.
 
 DONE
 Draw any map with openlayer.
