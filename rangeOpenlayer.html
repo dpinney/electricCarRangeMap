@@ -4,7 +4,8 @@
 		<style>
 			* {padding:0px; border:0px; margin:0px; overflow:hidden}
 			div#map {height:100%; width:100%}
-			div#controlBox {position:absolute; bottom:0px; left:5px; z-index: 100; padding:10px; font-family: sans-serif; background:gray; color:white;}
+			div#controlBox {position:absolute; bottom:0px; left:5px; z-index: 100; padding:10px; font-family: sans-serif; background:gray; color:white}
+			label {display:block;}
 		</style>
 		<script type="text/javascript" src="ol.js"></script>
 		<script type="text/javascript" src="MN_Chargers.js"></script>
@@ -13,18 +14,26 @@
 	</head>
 	<body>
 		<div id="controlBox">
-			<label><input type="radio" name="sex" value="male">Male</label><br>
-			<label><input type="radio" name="sex" value="female">Female</label>
 		</div>
 		<div id="map"></div>
 	</body>
 	<script type="text/javascript">
+		// Add the ranges.
+		for (i=1;i<ranges.length;i++) {
+			cBox = document.getElementById("controlBox")
+			cBox.innerHTML += "<label><input onclick='carClick()' type='radio' name='car' value='" + ranges[i][1] + "'> " + ranges[i][0] + " (" + ranges[i][1] + ")</label><br>"
+		}
+		// Onclick handler.
+		function carClick() {
+			var circRadiusMiles = document.querySelector("input[name = 'car']:checked").value
+			allCircleRadiiM(circRadiusMiles * 1609)
+		}		
 		// Set up the map.
 		var mnLoc = ol.proj.transform([-94.572029, 46.149394], 'EPSG:4326', 'EPSG:3857')
 		var vectorSource = new ol.source.Vector()
 		var map = new ol.Map({target: 'map',
 			layers: [new ol.layer.Tile({source: new ol.source.OSM()}), new ol.layer.Vector({source:vectorSource})],
-			view: new ol.View({center:mnLoc, minZoom:7, zoom:7})
+			view: new ol.View({center:mnLoc, minZoom:5, zoom:7})
 		})
 		// Add all the points.
 		for (i=1;i<chargers.length;i++) {
@@ -32,10 +41,11 @@
 			var iPoint = new ol.geom.Point(iLoc)
 			vectorSource.addFeature(new ol.Feature(iPoint))
 			var iCirc = new ol.geom.Circle(iLoc, 40000)
+			// var iCirc = new ol.geom.Polygon.circular(ol.sphere.WGS84, iLoc, 46831.9, 64);
 			vectorSource.addFeature(new ol.Feature(iCirc))
 		}
 		// Change radius of all circles.
-		function allCircleRadii(x) {
+		function allCircleRadiiM(x) {
 			allFeats = vectorSource.getFeatures()
 			for (i=0;i<allFeats.length;i++) {
 				iGeo = allFeats[i].getGeometry()
@@ -44,5 +54,7 @@
 				}
 			}
 		}
+		// Select the first car.
+		document.getElementById("controlBox").children[0].click()
 	</script>
 </html>

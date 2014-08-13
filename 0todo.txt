@@ -2,8 +2,9 @@ GOAL
 Generate this map.
 
 TODO
-Add the circle radius changer.
 Make the circle regions look nicer: poly intersect, better colors or different layer type.
+Look into circle radii and Tissot correction.
+Add a scale ruler.
 
 DONE
 Draw any map with openlayer.
@@ -13,6 +14,7 @@ Add state boundaries, cities, etc.
 Add a circle.
 Add a point.
 Put all features on it.
+Add the circle radius changer.
 
 LINKS
 Doing driving distance calculation in ESRI: http://blogs.esri.com/esri/arcgis/2013/12/27/33975/
